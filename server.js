@@ -11,7 +11,7 @@ const cheerio = require('cheerio');
 // Require all models
 const db = require('./models');
 
-const PORT = 3050;
+const PORT = process.env.PORT || 3050;
 
 // Initialize Express
 const app = express();
@@ -24,7 +24,8 @@ app.use(express.static('public'));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/mongo_scraper', {
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongo_scraper'
+mongoose.connect(MONGO_URI, {
   useMongoClient: true
 });
 
