@@ -4,11 +4,16 @@ $.getJSON("/articles", function(data) {
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
     $("#articles").append(
-      `<div class="listing" data-id="${data[i]._id}">
-      <h4>${data[i].title}</h4>
-      <a href="${data[i].link}">${data[i].link}</a>
-        <p>${data[i].description}</p>
-      </div>`
+      `<ul class="list-group">
+        <li class="list-group-item">
+          <div class="listing" data-id="${data[i]._id}">
+            <h4>${data[i].title}</h4>
+            <a href="${data[i].link}" target="_blank">${data[i].link.replace('//','')}</a>
+            <p>${data[i].description}</p>
+          </div>
+        </li>
+      </ul>`
+
     );
   }
 });
